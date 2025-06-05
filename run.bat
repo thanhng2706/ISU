@@ -1,0 +1,1 @@
+mvn clean compile exec:java -Dexec.mainClass=View.spreadsheet.SpreadsheetApp -Dexec.args="--add-opens=javafx.base/com.sun.javafx.event=ALL-UNNAMED"
