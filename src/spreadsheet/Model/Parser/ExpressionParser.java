@@ -326,9 +326,9 @@ public class ExpressionParser {
     private static int getColumn(String colString){
         int sum = 0;
         for(char c: colString.toCharArray()){
-            sum += c;
+            sum = sum * 26 + (c - 'A');
         }
-        return sum-'A';
+        return sum;
     }
 
     /**

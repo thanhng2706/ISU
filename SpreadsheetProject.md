@@ -156,7 +156,12 @@ The flow of the logic includes:
 CellRepository is set to static 20 columns and 100 rows.
 CellRepository stores the data for the spreadsheet. It acts as a central data point between the View and the Model. It maps each Cell to a unique `CellCoord` representing the coordinate of the cell in the grid. 
 The definition of `CellCoord` class is provided in the starter code.
-
+  * Note that `CellCoord` starts at column 0 and row 0, which is different from the basic cell naming convention.
+      * For example,
+        * Cell `A1` is at `CellCoord` row 0 and column 0.Add commentMore actions
+        * Cell `AA1` is at `CellCoord` row 0 and column 26.
+        * Cell `B2` is at `CellCoord` row 1 and column 1.
+    
 Cell repository adopts the “Singleton" design pattern. This design allows a single instance of spreadsheet data, meaning `CellRepository` will only get initialized once and stay consistent across all structure levels.
 CellRepository can be used as follows:
 
