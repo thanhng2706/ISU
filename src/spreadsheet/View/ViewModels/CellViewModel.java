@@ -12,15 +12,16 @@
 
 package spreadsheet.View.ViewModels;
 
-import spreadsheet.Model.Cell.Cell;
+import spreadsheet.Model.Cell.CellComponent;
+import spreadsheet.Model.Observer.CellObserver;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class CellViewModel { //implements Observer {
+public class CellViewModel implements CellObserver {
 
-    private Cell model;
+    private CellComponent model;
     public DoubleProperty valueProperty = new SimpleDoubleProperty();
     public StringProperty expressionProperty = new SimpleStringProperty();
 
@@ -33,20 +34,20 @@ public class CellViewModel { //implements Observer {
      *          CONSTRUCTOR
      * -------------------------------
      */
-    public CellViewModel(Cell model) {
+    public CellViewModel(CellComponent model) {
         this.model = model;
         valueProperty.set(this.model.getCellValue());
         expressionProperty.set("");
-
-        //this.model.addObserver(this);
+        this.model.addObserver(this); // register so UI refreshes when cell value changes
     }
 
     public void refreshValueProperty(){
         this.valueProperty.set(this.model.getCellValue());
     }
 
-    public void update(Cell cell){
-        this.refreshValueProperty();
+    @Override
+    public void onCellUpdated(CellComponent source) {
+        refreshValueProperty();
     }
     /**
      * ----------------------------------------
@@ -70,7 +71,7 @@ public class CellViewModel { //implements Observer {
         return valueProperty;
     }
 
-    public Cell getModel(){
+    public CellComponent getModel(){
         return model;
     }
 }

@@ -13,6 +13,7 @@ package spreadsheet.Model;
 
 import java.util.HashMap;
 import spreadsheet.Model.Cell.Cell;
+import spreadsheet.Model.Cell.CellComponent;
 
 /**
  * A singleton central data point to fetch CellComponents.
@@ -24,7 +25,7 @@ import spreadsheet.Model.Cell.Cell;
  */
 public class CellRepository {
     private static CellRepository instance;
-    private static HashMap<CellCoord, Cell> cellMap; //Every CC has a unique CellCoord
+    private static HashMap<CellCoord, CellComponent> cellMap; //Every CC has a unique CellCoord
 
     public static final int ROWS = 100;
     public static final int COLUMNS = 20;
@@ -82,7 +83,7 @@ public class CellRepository {
      * @param col the numerical column (0=a, 1=b, etc.)
      * @return the referenced CellComponent
      */
-    public Cell getReferenceCellComponent(int row, int col){
+    public CellComponent getReferenceCellComponent(int row, int col){
         return cellMap.get(new CellCoord(row, col));
     }
 }
